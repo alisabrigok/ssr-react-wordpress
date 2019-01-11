@@ -7,6 +7,38 @@ import Menu from "../components/Menu.js";
 import { Config } from "../config.js";
 
 class Index extends Component {
+  state = {
+    name: '',
+    email: '',
+    partner: ''
+  }
+
+  nameInputChangeHandler = event => {
+    this.setState({ name: event.target.value });
+  }
+
+  emailInputChangeHandler = event => {
+    this.setState({ email: event.target.value });
+  }
+
+  partnerInputChangeHandler = event => {
+    this.setState({ partner: event.target.value });
+  }
+
+  formSubmitHandler = async (event) => {
+    event.preventDefault();
+    
+    const { name, email, partner } = this.state;
+    const formData = new URLSearchParams({yourname: name, youremail: email, yourpartner: partner}); //wordpress expects form data intead of application/json
+    const response = await fetch(
+    `${Config.apiUrl}/wp-json/contact-form-7/v1/contact-forms/35/feedback`,
+    {
+      method: 'POST',
+      mode: "cors",
+      body: formData
+    });
+  }
+
   static async getInitialProps(context) {
     const pageRes = await fetch(
       `${Config.apiUrl}/wp-json/postlight/v1/page?slug=welcome`
@@ -20,6 +52,8 @@ class Index extends Component {
   }
 
   render() {
+    const { name, email, partner } = this.state;
+
     const posts = this.props.posts.map((post, index) => {
       return (
         <ul key={index}>
@@ -68,12 +102,15 @@ class Index extends Component {
             </div>
             <div className="registration-form__group">
               <label htmlFor="full-name" className="group__label">Full Name</label>
-              <input id="full-name" type="text" placeholder="Full Name" className="group__input"/>
+              <input id="full-name" value={name} type="text" placeholder="Full Name" className="group__input" onChange={this.nameInputChangeHandler}/>
 
               <label htmlFor="email" className="group__label">Email</label>
-              <input id="email" type="text" placeholder="Email address" className="group__input"/>
+              <input id="email" value={email} type="email" placeholder="Email address" className="group__input" onChange={this.emailInputChangeHandler}/>
 
-              <button className="group__button">Send</button>
+              <label htmlFor="partner" className="group__label">Suggested Partner Name</label>
+              <input id="partner" value={partner} type="text" placeholder="Please Select" className="group__input" onChange={this.partnerInputChangeHandler}/>
+
+              <button className="group__button" onClick={this.formSubmitHandler}>Send</button>
             </div>
           </form>
         </div>
