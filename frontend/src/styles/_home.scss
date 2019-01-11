@@ -1,0 +1,106 @@
+.merchants {
+  background-color: #fafafa;
+  padding-bottom: 3.4rem;
+
+  &__title {
+    display: flex;
+    justify-content: center;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+
+  &__filter {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .filter {
+    width: 117rem;
+    height: 8rem;
+    background-color: #e5dcec;
+    display: flex;
+    align-items: center;
+    margin-bottom: 4.3rem;
+
+    &__text {
+      color: $primaryFontColor-Dark;
+      margin-left: 3rem;
+    }
+  }
+
+  .map {
+    width: 117rem;
+    height: 60rem;
+    background-color: #cccccc;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .registration-form {
+    &__header {
+      margin-top: 5rem;
+      text-align: center;
+    }
+
+    &__group {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  .form-header {
+    &__title {
+      margin-bottom: 1rem;
+    }
+  }
+  
+  .group {
+    &__label {
+      font-size: 2rem;
+      font-weight: bold;
+      line-height: 1.9;
+      letter-spacing: 0.6px;
+      color: $primaryFontColor-Dark;
+      margin-top: 2rem;
+    }
+
+    &__input {
+      width: 57rem;
+      height: 5rem;
+      border: .2rem solid #c0c0c1;
+      border-radius: .6rem;
+      background-color: #ffffff;
+      font-size: 2rem;
+      padding-left: 1.5rem;
+
+      &::placeholder {
+        font-size: 2rem;
+        line-height: 1.9;
+        color: #060808;
+      }
+    }
+
+    &__button {
+      width: 57rem;
+      height: 5rem;
+      border-radius: .6rem;
+      background-color: $primaryFontColor-Light;
+      font-size: 2rem;
+      font-weight: 500;
+      line-height: 1.9;
+      color: #ffffff;
+      margin-top: 2rem;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+}

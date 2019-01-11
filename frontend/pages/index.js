@@ -6,11 +6,6 @@ import PageWrapper from "../components/PageWrapper.js";
 import Menu from "../components/Menu.js";
 import { Config } from "../config.js";
 
-const headerImageStyle = {
-  marginTop: 50,
-  marginBottom: 50
-};
-
 class Index extends Component {
   static async getInitialProps(context) {
     const pageRes = await fetch(
@@ -58,12 +53,36 @@ class Index extends Component {
         headerMenu={this.props.headerMenu}
         footerMenu={this.props.footerMenu}
       >
+        <div className="merchants">
+          <h1 className="merchants__title stc-h1">Merchant Locations</h1>
+          <div className="merchants__filter">
+            <div className="filter">
+              <h4 className="filter__text stc-h4">Filter Merchants</h4>
+            </div>
+            <div className="map"></div>
+          </div>
+          <form className="merchants__form">
+            <div className="registration-form__header">
+              <h1 className="form-header__title stc-h1">Merchant Registration</h1>
+              <h4 className="form-header__desc stc-h4">Tell us which brand you want to see at STC Pay Network</h4>
+            </div>
+            <div className="registration-form__group">
+              <label htmlFor="full-name" className="group__label">Full Name</label>
+              <input id="full-name" type="text" placeholder="Full Name" className="group__input"/>
+
+              <label htmlFor="email" className="group__label">Email</label>
+              <input id="email" type="text" placeholder="Email address" className="group__input"/>
+
+              <button className="group__button">Send</button>
+            </div>
+          </form>
+        </div>
         {/* <h1>{this.props.page.title.rendered}</h1> */}
-        <div
-        // dangerouslySetInnerHTML={{
-        //   __html: this.props.page.content.rendered
-        // }}
-        />
+        {/* <div
+        dangerouslySetInnerHTML={{
+          __html: this.props.page.content.rendered
+        }}
+        /> */}
       </Layout>
     );
   }
