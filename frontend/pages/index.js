@@ -5,12 +5,51 @@ import Link from "next/link";
 import PageWrapper from "../components/PageWrapper.js";
 import Menu from "../components/Menu.js";
 import { Config } from "../config.js";
+import MapContainer from '../components/MapContainer';
 
 class Index extends Component {
   state = {
     name: '',
     email: '',
     partner: ''
+  }
+
+  static async getInitialProps(context) {
+    try {
+      const pagesRes = await fetch(`${Config.apiUrl}/wp-json/wp/v2/pages?_embed`);
+      const pages = await pagesRes.json();
+  
+      const merchantsData = {
+        nearLatitude: 24.759324,
+        nearLongitude: 46.738326,
+        nearDistance: 2,
+        limit: 200
+      };
+  
+      const nearMerchantsRes = await fetch(
+      `${Config.stcUrl}/merchants`,
+      {
+        method: 'POST',
+        mode: "cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(merchantsData)
+      });
+  
+      const nearMerchants = await nearMerchantsRes.json();
+      const merchants = nearMerchants.items.map(merchant => ({
+        id: merchant.id,
+        brandName: merchant.brandName,
+        image: merchant.imageUrl,
+        description: merchant.category.desc,
+        pin: merchant.category.imageUrlPin,
+        lat: merchant.address.latitude || '',
+        lng: merchant.address.longitude || '',
+      }));
+
+      return { pages, merchants };
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   nameInputChangeHandler = event => {
@@ -29,7 +68,7 @@ class Index extends Component {
     event.preventDefault();
     
     const { name, email, partner } = this.state;
-    const formData = new URLSearchParams({yourname: name, youremail: email, yourpartner: partner}); //wordpress expects form data intead of application/json
+    const formData = new URLSearchParams({yourname: name, youremail: email, yourpartner: partner}); //somehow application/json didn't work, so applied this workaround
     const response = await fetch(
     `${Config.apiUrl}/wp-json/contact-form-7/v1/contact-forms/35/feedback`,
     {
@@ -39,35 +78,9 @@ class Index extends Component {
     });
   }
 
-  static async getInitialProps(context) {
-    const pageRes = await fetch(
-      `${Config.apiUrl}/wp-json/postlight/v1/page?slug=welcome`
-    );
-    const page = await pageRes.json();
-    const postsRes = await fetch(`${Config.apiUrl}/wp-json/wp/v2/posts?_embed`);
-    const posts = await postsRes.json();
-    const pagesRes = await fetch(`${Config.apiUrl}/wp-json/wp/v2/pages?_embed`);
-    const pages = await pagesRes.json();
-    return { page, posts, pages };
-  }
-
   render() {
     const { name, email, partner } = this.state;
 
-    const posts = this.props.posts.map((post, index) => {
-      return (
-        <ul key={index}>
-          <li>
-            <Link
-              as={`/post/${post.slug}`}
-              href={`/post?slug=${post.slug}&apiRoute=post`}
-            >
-              <a>{post.title.rendered}</a>
-            </Link>
-          </li>
-        </ul>
-      );
-    });
     const pages = this.props.pages.map((page, index) => {
       return (
         <ul key={index}>
@@ -93,7 +106,9 @@ class Index extends Component {
             <div className="filter">
               <h4 className="filter__text stc-h4">Filter Merchants</h4>
             </div>
-            <div className="map"></div>
+            <div className="map">
+              <MapContainer merchants={this.props.merchants} />            
+            </div>
           </div>
           <form className="merchants__form">
             <div className="registration-form__header">

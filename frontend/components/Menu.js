@@ -24,7 +24,7 @@ class Menu extends Component {
       const actualPage = item.object === "category" ? "category" : "post";
       return (
         <Link
-          as={`/${slug}`}
+          as={`/page/${slug}`}
           href={`/${actualPage}?slug=${slug}&apiRoute=${item.object}`}
           key={item.ID}
         >

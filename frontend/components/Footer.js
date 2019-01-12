@@ -18,10 +18,24 @@ class FooterMenu extends Component {
             <div className="link-group">
               <div className="link-group__item link-group__item--title">Partners</div>
               <div className="link-group__item">Our Partners</div>
+              <div className="link-group__item">Become a Partner</div>
+              <div className="link-group__item">Recommend a Partner</div>
             </div>
             <div className="link-group">
-              <div className="link-group__item link-group__item--title">Partners</div>
-              <div className="link-group__item">Our Partners</div>
+              <div className="link-group__item link-group__item--title">About Us</div>
+            </div>
+            <div className="link-group">
+              <div className="link-group__item link-group__item--title">Support</div>
+              <div className="link-group__item">Call Us</div>
+              <div className="link-group__item">Contact Form</div>
+              <div className="link-group__item">Social Media</div>
+              <div className="link-group__item">FAQ</div>
+            </div>
+            <div className="link-group">
+              <div className="link-group__item link-group__item--title">Contact Us</div>
+              <div className="link-group__item">Soon</div>
+              <div className="link-group__item">Pavilions Comunity Ad Diriyah Riyadh 13714</div>
+              <div className="link-group__item">info@stcpay.com.sa</div>
             </div>
           </div>
           <div className="footer__menu--cta cta">
@@ -45,12 +59,12 @@ class FooterMenu extends Component {
             </div>
             <div className="cta__app--title">Download Our Application</div>
             <div className="cta__app--icons">
-            <a href="https://play.google.com/store/apps/details?id=sa.com.stcpay" target="_blank" rel="noopener noreferrer" className="app-icons">
-              <img src="/static/images/play-store.png" alt="google play logo" />
-            </a>
-            <a href="https://app.adjust.com/j79f47b" target="_blank" rel="noopener noreferrer" className="app-icons">
-              <img src="/static/images/app-store.png" alt="app store logo" />
-            </a>
+              <a href="https://play.google.com/store/apps/details?id=sa.com.stcpay" target="_blank" rel="noopener noreferrer" className="app-icons">
+                <img src="/static/images/play-store.png" alt="google play logo" />
+              </a>
+              <a href="https://app.adjust.com/j79f47b" target="_blank" rel="noopener noreferrer" className="app-icons">
+                <img src="/static/images/app-store.png" alt="app store logo" />
+              </a>
             </div>
           </div>
         </div>
@@ -58,7 +72,7 @@ class FooterMenu extends Component {
           <div className="copyright__info">
             <img className="copyright__info--logo" src="/static/images/footerlogo.png" alt="brand footer logo" />
             <span className="copyright__info--text">
-              Copyright © 2018 Saudi Digital Payment Company All rights reserved.
+              Copyright © 2019 Saudi Digital Payment Company All rights reserved.
             </span>
           </div>
           <div className="copyright__privacy">

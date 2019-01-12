@@ -1,1 +1,1 @@
-export const Config = {apiUrl: 'http://localhost:8080'}
+export const Config = {apiUrl: 'http://localhost:8080', stcUrl: 'https://www.stcpay.com.sa/challenge'};
