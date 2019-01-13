@@ -1,0 +1,47 @@
+.rtl {
+  .stc-gradient {
+    background-image: linear-gradient(
+      to left,
+      #552b79,
+      #552b79 20%,
+      #d8127e 56%,
+      #e9822c 79%,
+      #f8c43a
+    );
+  }
+
+  .header {
+    &__menu {
+      order: 2;
+      display: flex;
+      direction: rtl;
+    }
+
+    &__logo {
+      order: 1;
+    }
+  }
+
+  .language {
+    margin-right: 1.6rem;
+    justify-content: flex-end;
+
+    &__icon {
+      order: 2;
+    }
+
+    &__text {
+      margin-right: 0.7rem;
+      order: 1;
+    }
+  }
+
+  .menu-item {
+    margin-left: 3rem;
+
+    &:first-child {
+      margin-right: 0;
+      margin-left: 3rem;
+    }
+  }
+}

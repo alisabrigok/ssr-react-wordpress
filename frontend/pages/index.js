@@ -11,7 +11,9 @@ class Index extends Component {
   state = {
     name: '',
     email: '',
-    partner: ''
+    partner: '',
+    status: '',
+    message: ''
   }
 
   static async getInitialProps(context) {
@@ -22,8 +24,8 @@ class Index extends Component {
       const merchantsData = {
         nearLatitude: 24.759324,
         nearLongitude: 46.738326,
-        nearDistance: 2,
-        limit: 200
+        nearDistance: 1,
+        limit: 100
       };
   
       const nearMerchantsRes = await fetch(
@@ -36,7 +38,7 @@ class Index extends Component {
       });
   
       const nearMerchants = await nearMerchantsRes.json();
-      const merchants = nearMerchants.items.map(merchant => ({
+      const merchants = (nearMerchants.items || []).map(merchant => ({
         id: merchant.id,
         brandName: merchant.brandName,
         image: merchant.imageUrl,
@@ -52,21 +54,11 @@ class Index extends Component {
     }
   }
 
-  nameInputChangeHandler = event => {
-    this.setState({ name: event.target.value });
+  inputChangeHandler = (event, inputName) => {
+    this.setState({ [inputName]: event.target.value });
   }
 
-  emailInputChangeHandler = event => {
-    this.setState({ email: event.target.value });
-  }
-
-  partnerInputChangeHandler = event => {
-    this.setState({ partner: event.target.value });
-  }
-
-  formSubmitHandler = async (event) => {
-    event.preventDefault();
-    
+  formSubmitHandler = async (event) => {    
     const { name, email, partner } = this.state;
     const formData = new URLSearchParams({yourname: name, youremail: email, yourpartner: partner}); //somehow application/json didn't work, so applied this workaround
     const response = await fetch(
@@ -76,10 +68,13 @@ class Index extends Component {
       mode: "cors",
       body: formData
     });
+    const parsedResponse = await response.json();
+    this.setState({ status: parsedResponse.status, message: parsedResponse.message });
   }
 
   render() {
-    const { name, email, partner } = this.state;
+    const { name, email, partner, status, message } = this.state;
+    const messageClass = status !== 'mail_sent'  ? 'group__message--error': 'group__message--success';
 
     const pages = this.props.pages.map((page, index) => {
       return (
@@ -110,31 +105,32 @@ class Index extends Component {
               <MapContainer merchants={this.props.merchants} />            
             </div>
           </div>
-          <form className="merchants__form">
+          <div className="merchants__form">
             <div className="registration-form__header">
               <h1 className="form-header__title stc-h1">Merchant Registration</h1>
               <h4 className="form-header__desc stc-h4">Tell us which brand you want to see at STC Pay Network</h4>
             </div>
             <div className="registration-form__group">
+              {status && message && (
+                <div className={`group__message ${messageClass}`}>
+                  {message}
+                  <div className="close" onClick={() => this.setState({status: '', message: ''})}>&times;</div>
+                </div>
+              )}
+              
               <label htmlFor="full-name" className="group__label">Full Name</label>
-              <input id="full-name" value={name} type="text" placeholder="Full Name" className="group__input" onChange={this.nameInputChangeHandler}/>
+              <input id="full-name" value={name} type="text" placeholder="Full Name" className="group__input" onChange={(e) => this.inputChangeHandler(e, 'name')}/>
 
               <label htmlFor="email" className="group__label">Email</label>
-              <input id="email" value={email} type="email" placeholder="Email address" className="group__input" onChange={this.emailInputChangeHandler}/>
+              <input id="email" value={email} type="email" placeholder="Email address" className="group__input" onChange={(e) => this.inputChangeHandler(e, 'email')}/>
 
               <label htmlFor="partner" className="group__label">Suggested Partner Name</label>
-              <input id="partner" value={partner} type="text" placeholder="Please Select" className="group__input" onChange={this.partnerInputChangeHandler}/>
+              <input id="partner" value={partner} type="text" placeholder="Please Select" className="group__input" onChange={(e) => this.inputChangeHandler(e, 'partner')}/>
 
               <button className="group__button" onClick={this.formSubmitHandler}>Send</button>
             </div>
-          </form>
+          </div>
         </div>
-        {/* <h1>{this.props.page.title.rendered}</h1> */}
-        {/* <div
-        dangerouslySetInnerHTML={{
-          __html: this.props.page.content.rendered
-        }}
-        /> */}
       </Layout>
     );
   }

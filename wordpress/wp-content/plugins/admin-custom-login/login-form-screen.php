@@ -279,7 +279,8 @@ function acl_er_login_logo() {
 		    color: #fff;
 		    padding-top: 10px !important;
 		    text-align: center;
-		    width: 335px;
+        width: 335px;
+        display: none;
 		}
 		.divfooter a, body.login #backtoblog .divfooter a {
 		    color: #f00 !important;

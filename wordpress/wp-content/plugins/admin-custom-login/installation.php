@@ -54,7 +54,7 @@ if(!isset($Version)){
 		'log_form_above_msg' => '',
 		'login_msg_fontsize' => '16',
 		'login_msg_font_color' => '#000000',
-		'tagline_msg' => 'Login form is designed using <a href="https://wordpress.org/plugins/admin-custom-login/" target="_blank">ACL</a> plugin by <a href="https://www.weblizar.com" target="_blank">Weblizar</a>.',
+		'tagline_msg' => 'STC Pay',
 		'user_cust_lbl' => 'Type Username or Email',
 		'pass_cust_lbl' => 'Type Password',
 		'label_username' => 'Username / Email',

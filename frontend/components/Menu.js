@@ -33,7 +33,7 @@ class Menu extends Component {
       );
     });
 
-    return <nav>{menuItems}</nav>;
+    return <nav className="header__menu">{menuItems}</nav>;
   }
 }
 

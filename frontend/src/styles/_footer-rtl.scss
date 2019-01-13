@@ -1,0 +1,65 @@
+.rtl {
+  .footer {
+    &__menu {
+      &--links {
+        display: flex;
+        order: 2;
+        direction: rtl;
+  
+        .link-group {
+          margin-right: 0;
+          margin-left: 6rem;
+        }
+      }
+  
+      &--cta {
+        order: 1;
+      }
+  
+      .cta {
+        &__social {
+          &--title {
+            direction: rtl;
+          }
+
+          &--icons {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 1.1rem;
+
+            .social-icons {
+              margin-right: 0;
+              margin-left: 1rem;
+            }
+          }
+        }
+  
+        &__app {
+          &--title {
+            direction: rtl;
+          }
+
+          &--icons {
+            direction: rtl;
+
+            .app-icons {
+              margin-right: 0;
+              margin-left: 2rem;
+            }
+          }
+        }
+      }
+    }
+  
+    .copyright {
+      direction: rtl;
+  
+      &__info {
+        &--logo {
+          margin-right: 0;
+          margin-left: 1rem;
+        }
+      }
+    }
+  }
+}

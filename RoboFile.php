@@ -21,11 +21,11 @@ class RoboFile extends \Robo\Tasks {
         $opts = [
             'wp-user' => 'nedstark',
             'wp-pw' => 'winteriscoming',
-            'wp-theme-dir' => 'postlight-headless-wp',
-            'wp-theme-name' => 'Postlight Headless WP Starter',
-            'wp-email' => 'nedstark@headlesswpstarter.dev',
+            'wp-theme-dir' => 'stc-pay-challenge',
+            'wp-theme-name' => 'STC Pay Challenge',
+            'wp-email' => 'alisabrigok@gmail.com',
             'wp-db-name' => 'wp_headless',
-            'wp-description' => 'Just another (headless) WordPress site',
+            'wp-description' => 'STC Pay Challenge wordpress',
             'wp-plugins' => [],
         ]
     ) {
@@ -117,13 +117,13 @@ class RoboFile extends \Robo\Tasks {
 
         // Update the Hello World post
         $this->wp(
-            'post update 1 wp-content/themes/postlight-headless-wp/post-content/sample-post.txt '.
+            'post update 1 wp-content/themes/stc-pay-challenge/post-content/sample-post.txt '.
             '--post_title="Sample Post" --post_name=sample-post'
         );
 
         // Create homepage content
         $this->wp(
-            'post create wp-content/themes/postlight-headless-wp/post-content/welcome.txt '.
+            'post create wp-content/themes/stc-pay-challenge/post-content/welcome.txt '.
             '--post_type=page --post_status=publish --post_name=welcome '.
             '--post_title="Congratulations!"'
         );

@@ -7,7 +7,7 @@ const PageWrapper = Comp =>
       try {
         const response = await Promise.all([
           fetch(`${Config.apiUrl}/wp-json/menus/v1/menus/header-menu`),
-          // fetch(`${Config.apiUrl}/wp-json/menus/v1/menus/footer-menu-column1`),
+          // fetch(`${Config.apiUrl}/wp-json/menus/v1/menus/footer-menu-column1`), possible footer menu routes, for now they are hardcoded
           // fetch(`${Config.apiUrl}/wp-json/menus/v1/menus/footer-menu-column2`),
           // fetch(`${Config.apiUrl}/wp-json/menus/v1/menus/footer-menu-column3`),
           // fetch(`${Config.apiUrl}/wp-json/menus/v1/menus/footer-menu-column4`),

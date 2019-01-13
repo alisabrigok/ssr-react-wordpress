@@ -22,7 +22,7 @@
         "google-map-react": "^1.1.2",
         "isomorphic-unfetch": "^2.0.0",
         "next": "latest",
-        "react": "^16.0.0"
+        "react": "^16.7.0"
     },
     "devDependencies": {
         "autoprefixer": "7.1.5",

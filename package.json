@@ -1,13 +1,13 @@
 {
-  "name": "headless-wp-starter",
+  "name": "stc-pay-challenge",
   "version": "1.0.0",
-  "repository": "git@github.com:postlight/headless-wp-starter.git",
-  "author": "Postlight",
+  "repository": "https://github.com/alisabrigok/ssr-react-wordpress",
+  "author": "stcpay",
   "license": "UNLICENSED",
   "private": true,
   "scripts": {
     "preinstall": "chmod +x install.sh && chmod +x mysql_config.sh && ./install.sh",
     "postinstall": "robo wordpress:setup",
-    "lint": "phpcs -v wordpress/wp-content/themes/postlight-headless-wp/. RoboFile.php"
+    "lint": "phpcs -v wordpress/wp-content/themes/stc-pay-challenge/. RoboFile.php"
   }
 }

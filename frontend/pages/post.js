@@ -10,7 +10,7 @@ class Post extends Component {
   static async getInitialProps(context) {
     const { slug, apiRoute } = context.query;
     const res = await fetch(
-      `${Config.apiUrl}/wp-json/postlight/v1/${apiRoute}?slug=${slug}`
+      `${Config.apiUrl}/wp-json/stcpay/v1/${apiRoute}?slug=${slug}`
     );
     const post = await res.json();
     return { post };
@@ -24,7 +24,6 @@ class Post extends Component {
         headerMenu={this.props.headerMenu}
         footerMenu={this.props.footerMenu}
       >
-        <h1>{this.props.post.title.rendered}</h1>
         <div
           dangerouslySetInnerHTML={{
             __html: this.props.post.content.rendered

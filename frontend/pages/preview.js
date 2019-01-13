@@ -19,7 +19,7 @@ class Preview extends Component {
     fetch(
       `${
         Config.apiUrl
-      }/wp-json/postlight/v1/post/preview?id=${id}&_wpnonce=${wpnonce}`,
+      }/wp-json/stcpay/v1/post/preview?id=${id}&_wpnonce=${wpnonce}`,
       { credentials: "include" } // required for cookie nonce auth
     )
       .then(res => res.json())
